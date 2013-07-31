@@ -1,0 +1,145 @@
+$grid-column-width: 60px !default;
+$grid-gutter-width: 20px !default;
+$grid-row-spacing: 0 !default;
+$grid-total-columns: 12 !default;
+$grid-column-selector: gc- !default;
+$grid-column-offset-selector: gc-off- !default;
+
+
+
+
+@import "compass/layout/grid-background";
+@import "compass/utilities/general/clearfix";
+
+@import "digitaria/general/colors";
+@import "digitaria/layout/responsive";
+
+
+
+
+@mixin grid-container {
+	$media-current: $media-normal;
+	margin: 0 auto;
+	width: getGridContainerWidth();
+	@include pie-clearfix;
+	@include media-small {
+		background-image: none;
+		padding: 0 10px;
+		width: auto;
+	}
+	@include media-medium {
+		width: getGridContainerWidth();
+	}
+	@include media-large {
+		width: getGridContainerWidth();
+	}
+}
+
+@mixin grid-row {
+	$media-current: $media-normal;
+	margin-bottom: $grid-row-spacing;
+	margin-left: - getGridGutterWidth();
+	@include pie-clearfix;
+	@include media-small {
+		margin-bottom: 0;
+		margin-left: 0;
+	}
+	@include media-medium {
+		margin-left: - getGridGutterWidth();
+	}
+	@include media-large {
+		margin-left: - getGridGutterWidth();
+	}
+}
+
+@mixin grid-column($id) {
+	$media-current: $media-normal;
+	float: left;
+	margin-left: getGridGutterWidth();
+	position: relative;
+	width: getGridColumnWidthById($id);
+
+	@include media-small {
+		float: none;
+		margin-bottom: $grid-row-spacing;
+		margin-left: 0;
+		@if $id == $grid-total-columns {
+			width: 100%;
+		} @else {
+			width: auto;
+		}
+	}
+	@include media-medium {
+		margin-left: getGridGutterWidth();
+		width: getGridColumnWidthById($id);
+	}
+	@include media-large {
+		margin-left: getGridGutterWidth();
+		width: getGridColumnWidthById($id);
+	}
+	&.fill {
+		background-color: $color-primary;
+		border: 1px solid $color-tertiary;
+		outline: 1px solid $color-primary;
+		padding: 10px 10px 200px;
+	}
+}
+@mixin grid-columns($selector:$grid-column-selector) {
+	@for $i from 1 through $grid-total-columns {
+		.#{$selector}#{$i} {
+			@include grid-column($i);
+		}
+	}
+}
+
+@mixin grid-column-offset($id) {
+	$media-current: $media-normal;
+	margin-left: getGridOffsetWidthById($id);
+	@include media-small {
+		margin-left: 0;
+	}
+	@include media-medium {
+		margin-left: getGridOffsetWidthById($id);
+	}
+	@include media-large {
+		margin-left: getGridOffsetWidthById($id);
+	}
+}
+@mixin grid-column-offsets($selector:$grid-column-offset-selector) {
+	@for $i from 1 through $grid-total-columns - 1 {
+		.#{$selector}#{$i} {
+			@include grid-column-offset($i);
+		}
+	}
+}
+
+
+
+
+@function getGridContainerWidth() {
+	@return (getGridColumnWidth() * $grid-total-columns) + (getGridGutterWidth() * ($grid-total-columns - 1));
+}
+
+@function getGridColumnWidth() {
+	@if $is-responsive {
+		@if $media-current == $media-medium { @return $media-medium-grid-column-width; }
+		@if $media-current == $media-large { @return $media-large-grid-column-width; }
+	}
+	@return $grid-column-width;
+}
+
+@function getGridGutterWidth() {
+	@if $is-responsive {
+		@if $media-current == $media-medium { @return $media-medium-grid-gutter-width; }
+		@if $media-current == $media-large { @return $media-large-grid-gutter-width; }
+	}
+	@return $grid-gutter-width;
+}
+
+@function getGridColumnWidthById($id) {
+	@return ($id * getGridColumnWidth()) + (getGridGutterWidth() * ($id - 1));
+}
+
+@function getGridOffsetWidthById($id) {
+	@return ($id * getGridColumnWidth()) + (getGridGutterWidth() * ($id + 1));
+}

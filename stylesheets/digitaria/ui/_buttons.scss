@@ -1,0 +1,53 @@
+@import "digitaria/general/colors";
+
+$button-color-background-primary: #333 !default;
+$button-border-color: #000 !default;
+$button-border-radius: 4px !default;
+$button-border-style: solid !default;
+$button-border-width: 1px !default;
+$button-gradient: true !default;
+$button-padding: 5px 10px !default;
+
+@mixin buttons {
+	.button {
+		@include button;
+		&.primary {
+			@include button(white, $button-color-background-primary);
+		}
+		&.secondary {
+			@include button(white, $color-secondary);
+		}
+		&.tertiary {
+			@include button(white, $color-tertiary);
+		}
+	}
+}
+
+@mixin button($text-color:$color-default, $bg-color:lighten($color-default, 60%)) {
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+	padding: $button-padding;
+	text-align: center;
+	@include border-radius($button-border-radius);
+	@include color-button($text-color, $bg-color);
+	&:hover, &:focus {
+		@include color-button($text-color, color-lighten($bg-color));
+	}
+	&:active {
+		background-color: color-darken($bg-color);
+	}
+}
+
+@mixin color-button($text-color, $bg-color) {
+	color: $text-color;
+	border-color: $button-border-color;
+	border-style: $button-border-style;
+	border-width: $button-border-width;
+	@if $button-gradient {
+		@include background-image(linear-gradient(color-lighten($bg-color), color-darken($bg-color)));
+		@include filter-gradient(color-lighten($bg-color), color-darken($bg-color));
+	} @else {
+		background-color: $bg-color;
+	}
+}

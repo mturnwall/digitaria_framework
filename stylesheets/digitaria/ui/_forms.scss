@@ -1,0 +1,58 @@
+@import "../general/colors";
+@import "../general/typography";
+@import "../layout/grid";
+
+$form-background: #fff !default;
+$form-border: none !default;
+$form-margin-bottom: 10px !default;
+$form-padding: 10px !default;
+
+@mixin forms {
+	input {
+		-webkit-appearance: none;
+		border-radius: 0;
+	}
+	input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea {
+		background: $form-background;
+		border: $form-border;
+		color: $color-default;
+		display: block;
+		font-size: $font-size-base;
+		margin-bottom: $form-margin-bottom;
+		padding: $form-padding;
+
+		&:focus {
+			outline: none !important;
+			border-color: #fff;
+		}
+		&[disabled] {
+			background: $form-background;
+		}
+	}
+
+	input[type="checkbox"] {
+		display: block;
+		font-size: $font-size-base;
+	}
+
+	input[type="radio"] {
+		border: none;
+		display: block;
+		font-size: $font-size-base;
+		padding: 10px;
+	}
+
+	input[type="submit"] {
+		display: block;
+		font-size: $font-size-base;
+		margin-bottom: $form-margin-bottom;
+	}
+
+	select {
+		width: 100%;
+	}
+
+	textarea {
+		height: auto;
+	}
+}

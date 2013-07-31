@@ -1,0 +1,51 @@
+//----------------------------
+// compass
+//----------------------------
+@import "compass/css3";
+* {
+	@include box-sizing(border-box);
+}
+@import "compass/reset";
+
+//----------------------------
+// digitaria base theme
+//----------------------------
+@import "digitaria/general";
+@import "digitaria/layouts";
+@import "digitaria/ui";
+
+/** Responsive Classes **/
+@include responsive-utilities;
+img, object, embed {
+	@include responsive-images;
+}
+
+/** Grid Classes **/
+.container {
+	@include grid-container;
+}
+.gr {
+	@include grid-row;
+}
+@include grid-columns();
+@include grid-column-offsets();
+@include off-screen;
+
+/** Defaults **/
+body {
+	background-color: $color-page-background;
+	color: $color-default;
+	@include type-body();
+}
+a {
+	color: $color-primary;
+	text-decoration: none;
+	&:hover, &:focus, &.active {
+		color: lighten($color-primary, 10%);
+	}
+}
+
+/** UI Classes **/
+@include buttons;
+@include forms;
+@include labels;

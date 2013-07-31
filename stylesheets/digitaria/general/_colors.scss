@@ -1,0 +1,14 @@
+$color-grade: 15% !default;
+$color-default: #585858 !default;
+$color-primary: #cfd215 !default;
+$color-secondary: #b3b512 !default;
+$color-tertiary: #fff !default;
+$color-page-background: #fff !default;
+
+@function color-lighten($color:$color-default, $grade:$color-grade) {
+	@return lighten($color, $grade);
+}
+
+@function color-darken($color:$color-default, $grade:$color-grade) {
+	@return darken($color, $grade);
+}

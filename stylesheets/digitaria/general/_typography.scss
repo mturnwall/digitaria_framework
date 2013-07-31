@@ -1,0 +1,30 @@
+@import "colors";
+
+$using-google-fonts: false !default;
+
+$font-family-mono: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace !default;
+$font-family-sans: Arial, Verdana, sans-serif !default;
+$font-family-serif: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif !default;
+$font-family-body: $font-family-sans !default;
+$font-family-heading: $font-family-sans !default;
+$font-size-base: 15px !default;
+
+@mixin type($font-family:$font-family-body, $font-size:$font-size-base, $weight:400) {
+	font: $font-size $font-family;
+	font-style: normal;
+	font-weight: $weight;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: aliased;
+}
+
+@mixin type-body($ff:$font-family-body, $w:400) {
+	@include type($ff, $font-size-base, $w);
+}
+
+@mixin type-mono {
+	@include type($font-family-mono);
+}
+
+@mixin load {
+	
+}
