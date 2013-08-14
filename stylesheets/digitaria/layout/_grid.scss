@@ -89,6 +89,9 @@ $grid-column-offset-selector: gc-off- !default;
 		.#{$selector}#{$i} {
 			@include grid-column($i);
 		}
+		%#{$selector}#{$i} {
+			@include grid-column($i);
+		}
 	}
 }
 
@@ -108,6 +111,9 @@ $grid-column-offset-selector: gc-off- !default;
 @mixin grid-column-offsets($selector:$grid-column-offset-selector) {
 	@for $i from 1 through $grid-total-columns - 1 {
 		.#{$selector}#{$i} {
+			@include grid-column-offset($i);
+		}
+		%#{$selector}#{$i} {
 			@include grid-column-offset($i);
 		}
 	}
