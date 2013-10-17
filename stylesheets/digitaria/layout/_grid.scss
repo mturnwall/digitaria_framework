@@ -5,16 +5,18 @@ $grid-total-columns: 12 !default;
 $grid-column-selector: gc- !default;
 $grid-column-offset-selector: gc-off- !default;
 
-
-
+// set this to true to use silent classes for the grid classes
+$grid-silent-classes: false !default;
+$class-type: unquote('.');
+@if $grid-silent-classes == true {
+	$class-type: unquote('%');
+}
 
 @import "compass/layout/grid-background";
 @import "compass/utilities/general/clearfix";
 
 @import "digitaria/general/colors";
 @import "digitaria/layout/responsive";
-
-
 
 
 @mixin grid-container {
@@ -86,7 +88,7 @@ $grid-column-offset-selector: gc-off- !default;
 }
 @mixin grid-columns($selector:$grid-column-selector) {
 	@for $i from 1 through $grid-total-columns {
-		.#{$selector}#{$i} {
+		#{$class-type}#{$selector}#{$i} {
 			@include grid-column($i);
 		}
 		%#{$selector}#{$i} {
@@ -110,7 +112,7 @@ $grid-column-offset-selector: gc-off- !default;
 }
 @mixin grid-column-offsets($selector:$grid-column-offset-selector) {
 	@for $i from 1 through $grid-total-columns - 1 {
-		.#{$selector}#{$i} {
+		#{$class-type}#{$selector}#{$i} {
 			@include grid-column-offset($i);
 		}
 		%#{$selector}#{$i} {
@@ -118,8 +120,6 @@ $grid-column-offset-selector: gc-off- !default;
 		}
 	}
 }
-
-
 
 
 @function getGridContainerWidth() {
