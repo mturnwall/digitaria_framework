@@ -1,2 +1,19 @@
 @import "layout/grid";
 @import "layout/responsive";
+
+/** Responsive Classes **/
+@include responsive-utilities;
+img, object, embed {
+	@include responsive-images;
+}
+
+/** Grid Classes **/
+.container {
+	@include grid-container;
+}
+.gr {
+	@include grid-row;
+}
+@include grid-columns();
+@include grid-column-offsets();
+@include off-screen;

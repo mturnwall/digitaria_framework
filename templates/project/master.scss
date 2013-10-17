@@ -6,5 +6,13 @@
 //	so that there is no actual CSS declared here
 //*************
 
-@import "digitaria";
+//****** Config File *********//
 @import "base";
+
+//****** Digitaria Framework *********
+// you can import individual sections or everything
+//************************************
+// @import "digitaria/general";
+// @import "digitaria/layouts";
+// @import "digitaria/ui";
+@import "digitaria";
