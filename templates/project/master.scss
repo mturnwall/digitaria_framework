@@ -1,7 +1,18 @@
 //*************
 //	This is the master css file.
 //	It contains all the default framework css
+//	All partials and modules should be imported here
+//	This file should only import other SASS files
+//	so that there is no actual CSS declared here
 //*************
 
+//****** Config File *********//
 @import "base";
+
+//****** Digitaria Framework *********
+// you can import individual sections or everything
+//************************************
+// @import "digitaria/general";
+// @import "digitaria/layouts";
+// @import "digitaria/ui";
 @import "digitaria";
