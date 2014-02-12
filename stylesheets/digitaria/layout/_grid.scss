@@ -20,38 +20,42 @@ $class-type: unquote('.');
 
 
 @mixin grid-container {
-	$media-current: $media-normal;
-	margin: 0 auto;
-	width: getGridContainerWidth();
-	@include pie-clearfix;
-	@include media-small {
-		background-image: none;
-		padding: 0 10px;
-		width: auto;
-	}
-	@include media-medium {
-		width: getGridContainerWidth();
-	}
-	@include media-large {
-		width: getGridContainerWidth();
-	}
+    #{$class-type}container {
+        $media-current: $media-normal;
+        margin: 0 auto;
+        width: getGridContainerWidth();
+        @include pie-clearfix;
+        @include media-small {
+            background-image: none;
+            padding: 0 10px;
+            width: auto;
+        }
+        @include media-medium {
+            width: getGridContainerWidth();
+        }
+        @include media-large {
+            width: getGridContainerWidth();
+        }
+    }
 }
 
 @mixin grid-row {
-	$media-current: $media-normal;
-	margin-bottom: $grid-row-spacing;
-	margin-left: - getGridGutterWidth();
-	@include pie-clearfix;
-	@include media-small {
-		margin-bottom: 0;
-		margin-left: 0;
-	}
-	@include media-medium {
-		margin-left: - getGridGutterWidth();
-	}
-	@include media-large {
-		margin-left: - getGridGutterWidth();
-	}
+    #{$class-type}gr {
+        $media-current: $media-normal;
+        margin-bottom: $grid-row-spacing;
+        margin-left: - getGridGutterWidth();
+        @include pie-clearfix;
+        @include media-small {
+            margin-bottom: 0;
+            margin-left: 0;
+        }
+        @include media-medium {
+            margin-left: - getGridGutterWidth();
+        }
+        @include media-large {
+            margin-left: - getGridGutterWidth();
+        }
+    }
 }
 
 @mixin grid-column($id) {

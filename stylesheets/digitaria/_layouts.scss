@@ -8,12 +8,8 @@ img, object, embed {
 }
 
 /** Grid Classes **/
-.container {
-	@include grid-container;
-}
-.gr {
-	@include grid-row;
-}
+@include grid-container;
+@include grid-row;
 @include grid-columns();
 @include grid-column-offsets();
 @include off-screen;
